@@ -1,30 +1,28 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div id="app">
+    <main-tab-bar/>
+    <router-view/>
   </div>
-  <router-view/>
 </template>
 
+<script>
+/*组件的使用：
+    1.创建组件：详情在components文件中
+    2.在使用的文件中引用组件并进行组件的注册：components
+    3.然后在template中将组件的id作为标签进行使用
+    4.最后需要<router-view>才能显示 
+ */
+import MainTabBar from '@/components/content/mainTabbar/MainTabBar.vue'
+export default {
+  name:'app',
+  components:{
+    MainTabBar
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+/* 样式的引用 */
+/* 这里已经使用了配置的路径 */
+@import "assets/css/base.css";
 </style>
