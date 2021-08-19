@@ -7,6 +7,15 @@
                 <div>购物街</div>
             </template>
         </nav-bar>
+        <swiper>
+            <swiper-item v-for="item in banners">
+                <template v-slot>
+                    <a :href="item.link">
+                        <img :src="item.image" alt="">
+                    </a>
+                </template>
+            </swiper-item>
+        </swiper>
     </div>
 </template>
 
@@ -16,23 +25,31 @@ import NavBar from '@/components/common/navbar/NavBar.vue'
 
 // 因为导出的时候不是用default导出，所以导入要用{}
 import {getHomeMultidata} from "@/network/home"
+// 因为在该文件中的js文件中定义过，所以可以这样导出
+import {Swiper,SwiperItem} from '@/components/common/swiper'
 export default {
     name:'Home',
     // 注册组件
     components:{
-        NavBar
+        NavBar,
+        Swiper,
+        SwiperItem
     },
     data() {
         return {
-            result:null
+            // 设置这个变量用于存储数据
+            banners:[],
+            recommends:[]
         }
     },
     // 在组件创建完成后马上发送网络请求
+    
     created() {
         // 1.请求多个数据,使用.then就能返回数据
         getHomeMultidata().then(res => {
-            console.log(res);
-            this.result = res
+            // console.log(res);
+            this.banners = res.data.banner.list;
+            this.recommends = res.data.recommend.list;
         })
     }
 }
