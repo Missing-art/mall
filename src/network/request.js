@@ -25,3 +25,16 @@ export function request(config) {
   // 3.发送真正的网络请求
   return instance(config)
 }
+
+/* // axios发送并发请求
+axios.all([axios({
+  url:'http://123.207.32.32:8000/home/multidata'
+}),axios({
+  url:'http://123.207.32.32:8000/home/data',
+  params: {
+    type: 'sell',
+    page: 4
+  }
+})]).then(results => {
+  console.log(results);
+}) */

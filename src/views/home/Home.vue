@@ -7,15 +7,8 @@
                 <div>购物街</div>
             </template>
         </nav-bar>
-        <swiper>
-            <swiper-item v-for="item in banners">
-                <template v-slot>
-                    <a :href="item.link">
-                        <img :src="item.image" alt="">
-                    </a>
-                </template>
-            </swiper-item>
-        </swiper>
+       <home-swiper :banners="banners"/>
+       <recommend-view :recommends="recommends"/>
     </div>
 </template>
 
@@ -25,15 +18,16 @@ import NavBar from '@/components/common/navbar/NavBar.vue'
 
 // 因为导出的时候不是用default导出，所以导入要用{}
 import {getHomeMultidata} from "@/network/home"
-// 因为在该文件中的js文件中定义过，所以可以这样导出
-import {Swiper,SwiperItem} from '@/components/common/swiper'
+import HomeSwiper from './childComps/HomeSwiper.vue'
+import RecommendView from './childComps/RecommendView.vue'
+
 export default {
     name:'Home',
     // 注册组件
     components:{
         NavBar,
-        Swiper,
-        SwiperItem
+        HomeSwiper,
+        RecommendView
     },
     data() {
         return {
